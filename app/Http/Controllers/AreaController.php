@@ -40,7 +40,8 @@ class AreaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Area::create($request->all());
+        return redirect('/areas');
     }
 
     /**
@@ -86,6 +87,9 @@ class AreaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $area = Area::findOrFail($id);
+
+        dd($area);
+        $area->delete();
     }
 }

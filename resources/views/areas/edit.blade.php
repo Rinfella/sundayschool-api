@@ -1,1 +1,2 @@
-<label for="name">Name</label> <input id="name" type="text" value="{{$area->name}}" name="name">
+<label for="name">Names</label>
+<input id="name" type="text" value="{{$area->name}}" name="name">

@@ -1,28 +1,57 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Areas</title>
-</head>
-<body>
-    <h1>{{$one}}</h1>
-    <h2>{{$two}}</h2>
-    <ul>
-        @foreach ($areas as $area)
-        <li>{{$area->name}} - {{$area->created_at}}
+<x-main-layout>
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>DataTables</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Areas</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
 
-            <a href="/areas/{{$area->id}}">View this area</a>
-            <a href="/areas/{{$area->id}}/edit">Edit this file area</a>
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Kohhran chhung a bial hrang hrangte <a href="/areas/create">Create New</a>:-</h3>
+                        </div>
 
-            <form action="/areas/{{$area->id}}" method="post">
-                @csrf
-                <input type="hidden" name="method" value="delete">
-                <input type="submit" value="Delete">
-            </form>
-        </li>
-        @endforeach
-    </ul>
-</body>
-</html>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Hming</th>
+                                        <th>Bial tu</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($areas as $area)
+                                    <tr>
+                                        <td>{{$area->name}}</td>
+                                        <td>{{$area->person_in_charge}}</td>
+                                        <td>
+                                            delete edit view members
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</x-main-layout>
