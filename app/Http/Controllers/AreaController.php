@@ -14,12 +14,11 @@ class AreaController extends Controller
      */
     public function index()
     {
-        $data = [
-            'areas' => Area::get(),
-            'one' => 1,
-            'two' => 'pahnihna'
+        $areas = Area::get();
+        $viewData = [
+            'areas' => $areas
         ];
-        return view('areas.index', $data);
+        return view('areas.index', $viewData);
     }
 
     /**
@@ -40,6 +39,17 @@ class AreaController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'name' => 'required',
+            'person_in_charge' => 'required|numeric'
+        ]);
+
+
+        // $area = new Area();
+        // $area->name = $request->input('name');
+        // $area->person_in_charge = $request->input('person_in_charge');
+
+
         Area::create($request->all());
         return redirect('/areas');
     }
