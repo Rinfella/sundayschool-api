@@ -6,7 +6,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class AreaSeeder extends Seeder
+class _AreaSeeder extends Seeder
 {
     /**
      * Seed the application's database.

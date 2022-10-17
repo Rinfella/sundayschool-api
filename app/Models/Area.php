@@ -9,10 +9,14 @@ class Area extends Model
 {
     use HasFactory;
 
+    use HasFactory;
+
     protected $fillable = [
-        
+        'name',
+        'person_in_charge',
     ];
     protected $guarded = [
-
+        //
     ];
+
 }

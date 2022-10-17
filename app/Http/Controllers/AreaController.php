@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreAreaRequest;
+use App\Http\Requests\UpdateAreaRequest;
 use App\Models\Area;
-use Illuminate\Http\Request;
 
 class AreaController extends Controller
 {
@@ -29,15 +30,16 @@ class AreaController extends Controller
     public function create()
     {
         return view('areas.create');
+
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreAreaRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreAreaRequest $request)
     {
         $this->validate($request, [
             'name' => 'required',
@@ -57,7 +59,7 @@ class AreaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Area  $area
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -69,7 +71,7 @@ class AreaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Area  $area
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -81,18 +83,19 @@ class AreaController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Http\Requests\UpdateAreaRequest  $request
+     * @param  \App\Models\Area  $area
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateAreaRequest $request, Area $area)
     {
         //
     }
+
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Area  $area
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
