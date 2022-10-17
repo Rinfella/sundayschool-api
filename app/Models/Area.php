@@ -15,8 +15,9 @@ class Area extends Model
         'name',
         'person_in_charge',
     ];
-    protected $guarded = [
-        //
-    ];
 
+    public function bialtu()
+    {
+        return $this->belongsTo(User::class, 'person_in_charge');
+    }
 }

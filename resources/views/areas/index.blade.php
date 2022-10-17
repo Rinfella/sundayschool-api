@@ -39,7 +39,7 @@
                                     @foreach ($areas as $area)
                                     <tr>
                                         <td>{{$area->name}}</td>
-                                        <td>{{$area->person_in_charge}}</td>
+                                        <td>{{$area->bialtu->name}}</td>
                                         <td>
                                             delete edit view members
                                         </td>

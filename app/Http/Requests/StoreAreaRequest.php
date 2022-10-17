@@ -13,7 +13,7 @@ class StoreAreaRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,17 @@ class StoreAreaRequest extends FormRequest
     public function rules()
     {
         return [
-            
+            'name' => 'required',
+            'person_in_charge' => 'required|numeric|exists:users,id'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'persom_in_charge' => [
+                'exists' => 'The user selected is not found!',
+            ]
         ];
     }
 }

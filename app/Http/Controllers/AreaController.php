@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreAreaRequest;
 use App\Http\Requests\UpdateAreaRequest;
 use App\Models\Area;
+use App\Models\User;
 
 class AreaController extends Controller
 {
@@ -15,10 +16,15 @@ class AreaController extends Controller
      */
     public function index()
     {
-        $areas = Area::get();
+        $areas = Area::with([
+            'bialtu' => function($q) {
+                $q->select('id', 'name');
+            }
+            ])->get();
         $viewData = [
             'areas' => $areas
         ];
+
         return view('areas.index', $viewData);
     }
 
@@ -29,7 +35,15 @@ class AreaController extends Controller
      */
     public function create()
     {
-        return view('areas.create');
+        $elders = User::select([
+            'id',
+            'name',
+            'fathers_name',
+        ])->get();
+
+        return view('areas.create', [
+            'elders' => $elders
+        ]);
 
     }
 
@@ -41,19 +55,12 @@ class AreaController extends Controller
      */
     public function store(StoreAreaRequest $request)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'person_in_charge' => 'required|numeric'
-        ]);
-
-
-        // $area = new Area();
-        // $area->name = $request->input('name');
-        // $area->person_in_charge = $request->input('person_in_charge');
-
-
-        Area::create($request->all());
-        return redirect('/areas');
+        try{
+            Area::create($request->all());
+            return redirect('/areas')->with('messageSuccess', 'Created Successfully');
+        } catch(\Throwable $th) {
+            return redirect('/areas')->with('messageError', 'Something went wrong');
+        }
     }
 
     /**
@@ -74,10 +81,18 @@ class AreaController extends Controller
      * @param  \App\Models\Area  $area
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Area $area)
     {
-        $area = Area::findOrFail($id);
-        return view('areas.edit', ['area' > $area]);
+        $elders = User::select([
+            'id',
+            'name',
+            'fathers_name',
+        ])->get();
+
+        return view('areas.edit', [
+            'elders' => $elders,
+            'area' => $area,
+        ]);
     }
 
     /**
@@ -89,7 +104,11 @@ class AreaController extends Controller
      */
     public function update(UpdateAreaRequest $request, Area $area)
     {
-        //
+        $area->name = $request->input('name');
+        $area->person_in_charge = $request->input('person_in_charge');
+        $area->save();
+
+        return redirect('/areas')->with('messageSuccess', $area->name . 'Updated Successfully');
     }
 
     /**
