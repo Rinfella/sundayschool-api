@@ -21,20 +21,33 @@
             <div class="card-body">
                 <div class="form-group">
                   <label for="name">Name</label>
-                  <input type="text" class="form-control" name="name" id="name" placeholder="Enter name">
-                  @if($errors->has('name') || $errors->has('person_in_charge'))
-                  {{$errors}}
-                  @endif
+                  <input
+                    type="text"
+                    class="form-control @error('name') is-invalid @enderror"
+                    name="name"
+                    placeholder="Enter name"
+                    value=""{{old('name')}}>
+                    <div class="invalid-feedback">
+                        {{$errors->first('name')}}
+                    </div>
                 </div>
                 <div class="form-group">
                   <label for="person_in_charge">Person In Charge</label>
-                  <select name="person_in_charge" id="person_in_charge">
+                  <select
+                    name="person_in_charge"
+                    class="form-control @error('person_in_charge') is-invalid @enderror"
+                    name="person_in_charge"
+                    value="{{old('person_in_charge')}}">
+
                     <option value="">--Select one--</option>
                         @foreach ($elders as $elder)
                             <option value="{{$elder->id}}">{{$elder->name}} {{$elder->email}}</option>
                         @endforeach
                   </select>
                   {{-- <input type="text" class="form-control" name="person_in_charge" placeholder="Enter number"> --}}
+                  <div class="invalid-feedback">
+                        {{$errors->first('person_in_charge')}}
+                  </div>
                 </div>
               </div>
               <div class="card-footer">
