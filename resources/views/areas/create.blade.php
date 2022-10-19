@@ -27,6 +27,7 @@
                     name="name"
                     placeholder="Enter name"
                     value=""{{old('name')}}>
+
                     <div class="invalid-feedback">
                         {{$errors->first('name')}}
                     </div>
@@ -35,7 +36,7 @@
                   <label for="person_in_charge">Person In Charge</label>
                   <select
                     name="person_in_charge"
-                    class="form-control @error('person_in_charge') is-invalid @enderror"
+                    class="form-control-sm @error('person_in_charge') is-invalid @enderror"
                     name="person_in_charge"
                     value="{{old('person_in_charge')}}">
 
@@ -44,7 +45,7 @@
                             <option value="{{$elder->id}}">{{$elder->name}} {{$elder->email}}</option>
                         @endforeach
                   </select>
-                  {{-- <input type="text" class="form-control" name="person_in_charge" placeholder="Enter number"> --}}
+                  <!-- {{-- <input type="text" class="form-control" name="person_in_charge" placeholder="Enter number"> --}} -->
                   <div class="invalid-feedback">
                         {{$errors->first('person_in_charge')}}
                   </div>
