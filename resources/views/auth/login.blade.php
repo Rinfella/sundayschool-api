@@ -3,6 +3,7 @@
       <p class="login-box-msg">Sign in to start your session</p>
 
       <form action="/auth/login" method="post">
+        @csrf
         <div class="input-group mb-3">
           <input
             type="email"
