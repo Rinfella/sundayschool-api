@@ -25,7 +25,7 @@ class UpdateAreaRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'person_in_charge' => "required|numeric|exists:users,id"
+            'person_in_charge' => 'required|numeric|exists:users,id'
         ];
     }
 
@@ -33,8 +33,8 @@ class UpdateAreaRequest extends FormRequest
     {
         return [
             'person_in_charge' => [
-                'exists' => 'The user selected is not found!'
+                'exists' => 'The user selected is not found',
             ]
-            ];
+        ];
     }
 }

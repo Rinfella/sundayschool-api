@@ -171,12 +171,23 @@
         </nav>
         <!-- /.navbar -->
 
+        <x-layout-sidebar />
+
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
-            {{ $slot }}
+            @if (session('messageSuccess'))
+                <div class="alert alert-success">
+                    {{ session('messageSuccess') }}
+                </div>
+            @endif
+            @if (session('messageError'))
+                <div class="alert alert-danger">
+                   {{ session ('messageError') }}
+                </div>
+            @endif
+        {{ $slot }}
         </div>
 
-        <x-sidebar></x-sidebar>
 
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">

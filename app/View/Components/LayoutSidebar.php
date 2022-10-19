@@ -4,7 +4,7 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class MainLayout extends Component
+class LayoutSidebar extends Component
 {
     /**
      * Create a new component instance.
@@ -13,7 +13,7 @@ class MainLayout extends Component
      */
     public function __construct()
     {
-        //
+        logger('in constructor');
     }
 
     /**
@@ -23,6 +23,51 @@ class MainLayout extends Component
      */
     public function render()
     {
-        return view('components.layouts');
+        logger('hello');
+        $items = [
+            [
+                'title' => 'Dashboard',
+                'link' => '/',
+                'icon' => 'fa-tachometer-alt',
+            ],
+            [
+                'title' => 'Areas',
+                'link' => '#',
+                'icon' => 'fa-circle',
+                'routeNameStart' => 'areas.',
+                'children' => [
+                    [
+                        'title' => 'List',
+                        'link' => 'areas',
+                        'icon' => 'fa-list-ul',
+                    ],
+                    [
+                        'title' => 'Create',
+                        'link' => 'areas/create',
+                        'icon' => 'fa-plus',
+                    ],
+                ]
+                ],
+            ];
+
+            foreach($items as &$item) {
+                $item['isActive'] = false;
+
+                if (isset($item['children']) && (strpos(request()->route()->getName(), $item['routeNameStart']) === 0)) {
+                    $item['isActive'] = true;
+                }
+
+                if (!isset($item['children'])) {
+                    $item['isActive'] = request()->route()->uri() == $item['link'];
+                }
+
+                if (isset($item['children'])) {
+                    foreach($item['children'] as &$child) {
+                        $child['isActive'] = request()->route()->uri() == $child['link'];
+                    }
+                }
+            }
+
+        return view('components.layout.sidebar', ['items' => $items]);
     }
 }

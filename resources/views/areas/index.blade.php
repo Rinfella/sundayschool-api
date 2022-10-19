@@ -41,7 +41,13 @@
                                         <td>{{$area->name}}</td>
                                         <td>{{$area->bialtu->name}}</td>
                                         <td>
-                                            delete edit view members
+                                        <form onsubmit="return confirm('Are you sure?')" action="/areas/{{$area->id}}" class="d-inline" method="post">
+                                                @method('delete')
+                                                @csrf
+                                            <input class="btn btn-danger btn-small" type="submit" value="Delete">
+                                        </form>
+                                            <a href="/areas/{{$area->id}}/edit">edit</a>
+                                            view members
                                         </td>
                                     </tr>
                                     @endforeach

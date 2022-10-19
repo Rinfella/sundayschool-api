@@ -32,8 +32,8 @@ class StoreAreaRequest extends FormRequest
     public function messages()
     {
         return [
-            'persom_in_charge' => [
-                'exists' => 'The user selected is not found!',
+            'person_in_charge' => [
+                'exists' => 'The user selected is not found',
             ]
         ];
     }
