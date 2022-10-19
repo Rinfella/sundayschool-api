@@ -59,8 +59,7 @@
                                         <a href="{{ $child['link'] }}"
                                             class="nav-link {{ $child['isActive'] ? 'active' : '' }}">
                                             <i class="fa {{ $child['icon'] }} nav-icon"></i>
-                                            <p>{{ $child['title'] }} {{ request()->route()->uri() }}
-                                                {{ $child['link'] }}</p>
+                                            <p>{{ $child['title'] }}</p>
                                         </a>
                                     </li>
                                 @endforeach
