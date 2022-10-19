@@ -46,8 +46,8 @@
                                                 @csrf
                                             <input class="btn btn-danger btn-small" type="submit" value="Delete">
                                         </form>
-                                            <a href="/areas/{{$area->id}}/edit">edit</a>
-                                            view members
+                                            <a href="/areas/{{$area->id}}/edit" class="btn btn-secondary btn-small">Edit</a>
+                                            <a href="/" class="btn btn-primary btn-small">View Members</a>
                                         </td>
                                     </tr>
                                     @endforeach
