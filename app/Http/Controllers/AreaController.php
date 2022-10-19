@@ -109,7 +109,7 @@ class AreaController extends Controller
         $area->person_in_charge = $request->input('person_in_charge');
         $area->save();
 
-        return redirect('/areas/')->with('messageSuccess', $area->name . 'Updated Successfully');
+        return redirect('/areas/')->with('messageSuccess', $area->name . '  Updated Successfully');
     }
 
     /**
@@ -126,6 +126,6 @@ class AreaController extends Controller
         // $area->delete();
 
         $area->delete();
-        return redirect('/areas')->with('messageSuccess', $area->name. 'Deleted Successfully');
+        return redirect('/areas')->with('messageSuccess', $area->name. '  Deleted Successfully');
     }
 }
