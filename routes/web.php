@@ -1,10 +1,7 @@
 <?php
 
 use App\Http\Controllers\AreaController;
-<<<<<<< HEAD
 use App\Http\Controllers\AuthController;
-=======
->>>>>>> 8364e9aa7a93402bdf87b72bf33c672cd5da4951
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,7 +14,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-<<<<<<< HEAD
 Route::get('/', function () {
     return view('welcome');
 });
@@ -42,10 +38,4 @@ Route::group([
 
 });
 
-=======
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
->>>>>>> 8364e9aa7a93402bdf87b72bf33c672cd5da4951
 Route::resource('areas',AreaController::class);
