@@ -4,18 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegisterRequest;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    public function showLogin ()
+    public function showLogin()
     {
         return view('auth.login');
     }
 
     public function login(LoginRequest $request)
     {
-        return 'ok';
+        if(Auth::attempt($request->except(['_token']))) {
+            return redirect('/admin');
+        }
+        return redirect ('/auth/login')->with('messageError', 'Email/password combination is invalid');
+
     }
 
     public function showRegistrationForm()
@@ -25,7 +32,11 @@ class AuthController extends Controller
 
     public function register(RegisterRequest $request)
     {
-        return 'ok';
+        $data = $request->all();
+        $data['password'] = Hash::make($data['password']);
+        User::create($data);
+        return redirect ('/auth/login')
+            ->with('messageSuccess', 'Account created successfully..');
     }
 
     public function showForgotPassword()

@@ -6,6 +6,7 @@
         @csrf
         <div class="input-group mb-3">
           <input
+            name="email"
             type="email"
             class="form-control @error('email') is-invalid @enderror"
             placeholder="Email"
@@ -21,6 +22,7 @@
         </div>
         <div class="input-group mb-3">
           <input
+            name="password"
             type="password"
             class="form-control @error('password') is-invalid @enderror"
             placeholder="Password">

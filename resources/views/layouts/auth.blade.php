@@ -19,6 +19,16 @@
   <div class="login-logo">
     <a href="#"><b>Admin</b>LTE</a>
   </div>
+    @if (session('messageSuccess'))
+        <div class="alert alert-success">
+            {{ session('messageSuccess') }}
+        </div>
+    @endif
+    @if (session('messageError'))
+        <div class="alert alert-danger">
+            {{ session ('messageError') }}
+        </div>
+    @endif
   <!-- /.login-logo -->
     {{$slot}}
 </div>

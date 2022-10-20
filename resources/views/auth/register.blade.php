@@ -27,7 +27,7 @@
             class="form-control @error('fathers_name') is-invalid @enderror"
             name="fathers_name"
             placeholder="Father's name"
-            value="{{old('name')}}">
+            value="{{old('fathers_name')}}">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
@@ -57,7 +57,7 @@
           <input
             type="email"
             class="form-control @error('email') is-invalid @enderror"
-            name="name"
+            name="email"
             placeholder="Email"
             value="{{old('email')}}">
           <div class="input-group-append">
@@ -87,7 +87,7 @@
         <div class="input-group mb-3">
           <input
             type="password"
-            class="form-control @error('password') is-invalid @enderror"
+            class="form-control @error('password_confirmation') is-invalid @enderror"
             name="password_confirmation"
             placeholder="Retype password">
           <div class="input-group-append">
@@ -96,23 +96,30 @@
             </div>
           </div>
           <div class="invalid-feedback">
-            {{$errors->first('password')}}
+            {{$errors->first('password_confirmation')}}
           </div>
         </div>
         <div class="row">
           <div class="col-8">
             <div class="icheck-primary">
-              <input type="checkbox" id="agreeTerms" name="terms" value="agree">
-              <label for="agreeTerms">
+              <input type="checkbox"
+              class="form-check-input @error('terms') is-invalid @enderror"
+              name="terms"
+              id="agreeTerms"
+              value="yes">
+              <label class="form-check-label" for="agreeTerms">
                I agree to the <a href="#">terms</a>
               </label>
+              <div class="invalid-feedback">
+                You have to agree before submitting!
+              </div>
             </div>
           </div>
-          <!-- /.col -->
+
           <div class="col-4">
             <button type="submit" class="btn btn-primary btn-block">Register</button>
           </div>
-          <!-- /.col -->
+
         </div>
       </form>
 

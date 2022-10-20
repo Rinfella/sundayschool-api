@@ -2,13 +2,16 @@
     <div class="card-body login-card-body">
       <p class="login-box-msg">You forgot your password? Here you can easily retrieve a new password.</p>
 
-      <form action="recover-password.html" method="post">
+      <form action="/auth/forgot-password" method="post">
         <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="Email">
+          <input type="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
             </div>
+          </div>
+          <div class="invalid-feedback">
+            {{$errors->first('email')}}
           </div>
         </div>
         <div class="row">
@@ -20,10 +23,10 @@
       </form>
 
       <p class="mt-3 mb-1">
-        <a href="login.html">Login</a>
+        <a href="/auth/login">Login</a>
       </p>
       <p class="mb-0">
-        <a href="register.html" class="text-center">Register a new membership</a>
+        <a href="/auth/register" class="text-center">Register a new membership</a>
       </p>
     </div>
     <!-- /.login-card-body -->

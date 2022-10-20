@@ -18,8 +18,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/admin', function () {
+    return view('welcome');
+});
+
 Route::group([
-    'prefix' => 'auth'
+    'prefix' => 'auth',
+    'middleware' => 'guest'
 ], function() {
     Route::get('register', [AuthController::class, 'showRegistrationForm']);
     Route::post('register', [AuthController::class, 'register']);
