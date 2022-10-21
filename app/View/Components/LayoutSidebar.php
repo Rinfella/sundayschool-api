@@ -27,7 +27,7 @@ class LayoutSidebar extends Component
         $items = [
             [
                 'title' => 'Dashboard',
-                'link' => '/',
+                'link' => '/admin',
                 'icon' => 'fa-tachometer-alt',
             ],
             [
@@ -43,7 +43,7 @@ class LayoutSidebar extends Component
                     ],
                     [
                         'title' => 'Create',
-                        'link' => 'areas/create',
+                        'link' => '/admin/areas/create',
                         'icon' => 'fa-plus',
                     ],
                 ]

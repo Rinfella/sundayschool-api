@@ -167,6 +167,15 @@
                         <i class="fas fa-th-large"></i>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <form action="/auth/logout" method="post" id="logout-form">
+                        @csrf
+                    </form>
+                    <a class="nav-link"
+                        onclick="confirm('Are you sure to log out?') ? document.getElementById('logout-form').submit() : null">
+                        <i class="fas fa-power-off"></i>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.navbar -->

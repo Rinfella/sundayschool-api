@@ -1,4 +1,4 @@
-<x-main-layout>
+<x-admin-layout>
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
@@ -16,7 +16,7 @@
         </div>
     </section>
     <section class="content">
-        <form action="/areas" method="post">
+        <form action="/admin/areas" method="post">
             @csrf
             <div class="card-body">
                 <div class="form-group">
@@ -56,4 +56,4 @@
               </div>
         </form>
     </section>
-</x-main-layout>
+</x-admin-layout>
