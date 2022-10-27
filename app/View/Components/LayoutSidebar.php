@@ -25,29 +25,85 @@ class LayoutSidebar extends Component
     {
         logger('hello');
         $items = [
-            [
-                'title' => 'Dashboard',
-                'link' => '/admin',
-                'icon' => 'fa-tachometer-alt',
-            ],
-            [
-                'title' => 'Areas',
-                'link' => '#',
-                'icon' => 'fa-circle',
-                'routeNameStart' => 'areas.',
-                'children' => [
-                    [
-                        'title' => 'List',
-                        'link' => 'areas',
-                        'icon' => 'fa-list-ul',
-                    ],
-                    [
-                        'title' => 'Create',
-                        'link' => '/admin/areas/create',
-                        'icon' => 'fa-plus',
-                    ],
+                [
+                    'title' => 'Dashboard',
+                    'link' => '/admin',
+                    'icon' => 'fa-tachometer-alt',
+                ],
+                [
+                    'title' => 'Areas',
+                    'link' => '#',
+                    'icon' => 'fa-circle',
+                    'routeNameStart' => 'areas.',
+                    'children' => [
+                        [
+                            'title' => 'List',
+                            'link' => '/admin/areas',
+                            'icon' => 'fa-list-ul',
+                        ],
+                        [
+                            'title' => 'Create',
+                            'link' => '/admin/areas/create',
+                            'icon' => 'fa-plus',
+                        ],
                 ]
                 ],
+                [
+                    'title' => 'Sessions',
+                    'link' => '#',
+                    'icon' => 'fa-stopwatch',
+                    'routeNameStart' => 'sessions.',
+                    'children' => [
+                        [
+                            'title' => 'SessionsList',
+                            'link' => '/admin/sessions',
+                            'icon' => 'fa-list-ul',
+                        ],
+                        [
+                            'title' => 'Create',
+                            'link' => '/admin/sessions/create',
+                            'icon' => 'fa-plus',
+                        ],
+                    ]
+                ],
+
+                [
+                    'title' => 'Departments',
+                    'link' => '#',
+                    'icon' => 'fa-stopwatch',
+                    'routeNameStart' => 'departments.',
+                    'children' => [
+                        [
+                            'title' => 'departmentsList',
+                            'link' => '/admin/departments',
+                            'icon' => 'fa-list-ul',
+                        ],
+                        [
+                            'title' => 'Create',
+                            'link' => '/admin/departments/create',
+                            'icon' => 'fa-plus',
+                        ],
+                    ]
+                ],
+
+                [
+                    'title' => 'Groups',
+                    'link' => '#',
+                    'icon' => 'fa-stopwatch',
+                    'routeNameStart' => 'groups.',
+                    'children' => [
+                        [
+                            'title' => 'groupsList',
+                            'link' => '/admin/groups',
+                            'icon' => 'fa-list-ul',
+                        ],
+                        [
+                            'title' => 'Create',
+                            'link' => '/admin/groups/create',
+                            'icon' => 'fa-plus',
+                        ],
+                    ]
+                ]
             ];
 
             foreach($items as &$item) {

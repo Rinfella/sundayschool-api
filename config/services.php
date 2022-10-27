@@ -31,4 +31,16 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'google' => [
+        'client_id' => env('GOOGLE_AUTH_CLIENT_ID'),
+        'client_secret' => env('GOOGLE_AUTH_CLIENT_SECRET'),
+        'redirect' => env('GOOGLE_AUTH_CLIENT_REDIRECT')
+    ],
+
+    'gitlab' => [
+        'client_id' => env('GITLAB_AUTH_CLIENT_ID'),
+        'client_secret' => env('GITLAB_AUTH_CLIENT_SECRET'),
+        'redirect' => env('GITLAB_AUTH_CLIENT_REDIRECT')
+    ],
+
 ];

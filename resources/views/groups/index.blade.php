@@ -3,12 +3,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>DataTables</h1>
+                    <h1>Groups / Pawl</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Areas</li>
+                        <li class="breadcrumb-item active">Groups</li>
                     </ol>
                 </div>
             </div>
@@ -22,7 +22,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Kohhran chhung a bial hrang hrangte <a href="/admin/areas/create">Create New</a>:-</h3>
+                            <h3 class="card-title">Sunday school pawl hrang hrang te:<a href="/admin/groups/create">Create New</a>:-</h3>
                         </div>
 
                         <!-- /.card-header -->
@@ -31,27 +31,30 @@
                                 <thead>
                                     <tr>
                                         <th>Hming</th>
-                                        <th>Bial tu</th>
+                                        <th>Department</th>
+                                        <th>Zirtirtu</th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($areas as $area)
+                                    @foreach ($groups as $group)
                                     <tr>
-                                        <td>{{$area->name}}</td>
-                                        <td>{{$area->bialtu->name}}</td>
+                                        <td>{{$group->name}}</td>
+                                        <td>{{$group->department->name}}</td>
+                                        <td>{{$group->is_teacher_group}}</td>
                                         <td>
-                                        <form onsubmit="return confirm('Are you sure?')" action="/admin/areas/{{$area->id}}" class="d-inline" method="post">
+                                        <form onsubmit="return confirm('Are you sure?')" action="/admin/groups/{{$group->id}}" class="d-inline" method="post">
                                                 @method('delete')
                                                 @csrf
                                             <input class="btn btn-danger btn-small" type="submit" value="Delete">
                                         </form>
-                                            <a href="/admin/areas/{{$area->id}}/edit" class="btn btn-secondary btn-small">Edit</a>
+                                            <a href="/admin/groups/{{$group->id}}/edit" class="btn btn-secondary btn-small">Edit</a>
                                             <a href="/" class="btn btn-primary btn-small">View Members</a>
                                         </td>
                                     </tr>
                                     @endforeach
                                 </tbody>
+                                {{$groups->links()}}
                             </table>
                         </div>
                     </div>

@@ -46,7 +46,7 @@
           </div>
           <!-- /.col -->
           <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+            <button type="submit" class="btn btn-success btn-block">Sign In</button>
           </div>
           <!-- /.col -->
         </div>
@@ -54,8 +54,14 @@
 
       <div class="social-auth-links text-center mb-3">
         <p>- OR -</p>
-        <a href="#" class="btn btn-block btn-danger">
+        <a href="/auth/google-sign-in" class="btn btn-block btn-primary">
           <i class="fab fa-google mr-2"></i> Sign in using Google
+        </a>
+      </div>
+
+      <div class="social-auth-links text-center mb-3">
+        <a href="/auth/gitlab-sign-in" class="btn btn-block btn-danger">
+          <i class="fab fa-gitlab mr-2"></i> Sign in using Gitlab
         </a>
       </div>
       <!-- /.social-auth-links -->

@@ -3,12 +3,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>DataTables</h1>
+                    <h1>Sessions Tables</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Areas</li>
+                        <li class="breadcrumb-item active">Sessions</li>
                     </ol>
                 </div>
             </div>
@@ -22,7 +22,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Kohhran chhung a bial hrang hrangte <a href="/admin/areas/create">Create New</a>:-</h3>
+                            <h3 class="card-title">Sunday School pawl hrang hrangte <a href="/admin/sessions/create">Create New</a>:-</h3>
                         </div>
 
                         <!-- /.card-header -->
@@ -30,23 +30,31 @@
                             <table class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                        <th>Hming</th>
-                                        <th>Bial tu</th>
-                                        <th></th>
+                                        <th>Year</th>
+                                        <th>Start Month</th>
+                                        <th>End Month</th>
+                                        <th>Honour Cutoff</th>
+                                        <th>Exam Full Mark</th>
+                                        <th>Total no. of SundaySchools</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($areas as $area)
+                                    @foreach ($sessions as $session)
                                     <tr>
-                                        <td>{{$area->name}}</td>
-                                        <td>{{$area->bialtu->name}}</td>
+                                        <td>{{$session->year}}</td>
+                                        <td>{{$session->start_month}}</td>
+                                        <td>{{$session->end_month}}</td>
+                                        <td>{{$session->honour_cutoff}}</td>
+                                        <td>{{$session->exam_full_mark}}</td>
+                                        <td>{{$session->total_number_of_sunday_schools}}</td>
+
                                         <td>
-                                        <form onsubmit="return confirm('Are you sure?')" action="/admin/areas/{{$area->id}}" class="d-inline" method="post">
+                                        <form onsubmit="return confirm('Are you sure?')" action="/admin/sessions/{{$session->id}}" class="d-inline" method="post">
                                                 @method('delete')
                                                 @csrf
                                             <input class="btn btn-danger btn-small" type="submit" value="Delete">
                                         </form>
-                                            <a href="/admin/areas/{{$area->id}}/edit" class="btn btn-secondary btn-small">Edit</a>
+                                            <a href="/admin/sessions/{{$session->id}}/edit" class="btn btn-secondary btn-small">Edit</a>
                                             <a href="/" class="btn btn-primary btn-small">View Members</a>
                                         </td>
                                     </tr>

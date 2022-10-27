@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
+use Laravel\Socialite\Facades\Socialite;
 
 class AuthController extends Controller
 {
@@ -101,6 +102,58 @@ class AuthController extends Controller
         return $status === Password::PASSWORD_RESET
                 ? redirect()->route('login')->with('messageSuccess', __($status))
                 : back()->with(['messageError', __($status)]);
+    }
+
+    public function loginWithGoogle()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+
+    public function googleLoginRedirect()
+    {
+        $socialiteUser = Socialite::driver('google')->user();
+        $user = User::firstOrCreate([
+            'email' => $socialiteUser->email,
+        ], [
+            'name' => $socialiteUser->name,
+            'password' => Hash::make(uniqid()),
+            'email_verified_at' => now(),
+        ]);
+
+        if(!$user->email_verified_at) {
+            $user->email_verified_at = now();
+            $user->save();
+        }
+
+        Auth::login($user);
+
+        return redirect('/admin');
+    }
+
+    public function loginWithGitlab()
+    {
+        return Socialite::driver('gitlab')->redirect();
+    }
+
+    public function gitlabLoginRedirect()
+    {
+        $socialiteUser = Socialite::driver('gitlab')->user();
+        $user = User::firstOrCreate([
+            'email' => $socialiteUser->email,
+        ], [
+            'name' => $socialiteUser->name,
+            'password' => Hash::make(uniqid()),
+            'email_verified_at' => now(),
+        ]);
+
+        if(!$user->email_verified_at) {
+            $user->email_verified_at = now();
+            $user->save();
+        }
+
+        Auth::login($user);
+
+        return redirect('/admin');
     }
 }
 

@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\AreaController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\GroupController;
+use App\Http\Controllers\SessionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,6 +38,12 @@ Route::group([
     Route::get('reset-password/{token}/{email}', [AuthController::class, 'showResetPassword'])->name('password.reset');
     Route::post('reset-password', [AuthController::class, 'resetPassword']);
 
+    Route::get('/google-sign-in', [AuthController::class, 'loginWithGoogle']);
+    Route::get('/login-with-google', [AuthController::class, 'googleLoginRedirect']);
+
+    Route::get('/gitlab-sign-in', [AuthController::class, 'loginWithGitlab']);
+    Route::get('/login-with-gitlab', [AuthController::class, 'gitlabLoginRedirect']);
+
 });
 
 Route::post('auth/logout', [AuthController::class, 'logout'])->middleware('auth');
@@ -48,6 +57,9 @@ Route::group([
     Route::get('/', function() {
         return view('dashboard.index');
     });
-    ROute::resource('areas', AreaController::class);
+    Route::resource('areas', AreaController::class);
+    Route::resource('sessions', SessionController::class);
+    Route::resource('departments', DepartmentController::class);
+    Route::resource('groups', GroupController::class);
 });
 

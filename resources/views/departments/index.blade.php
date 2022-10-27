@@ -3,12 +3,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>DataTables</h1>
+                    <h1>Departments</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Areas</li>
+                        <li class="breadcrumb-item active">Departments</li>
                     </ol>
                 </div>
             </div>
@@ -22,7 +22,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Kohhran chhung a bial hrang hrangte <a href="/admin/areas/create">Create New</a>:-</h3>
+                            <h3 class="card-title">Sunday school departments<a href="/admin/departments/create">Create New</a>:-</h3>
                         </div>
 
                         <!-- /.card-header -->
@@ -31,22 +31,26 @@
                                 <thead>
                                     <tr>
                                         <th>Hming</th>
-                                        <th>Bial tu</th>
+                                        <th>Kum (minimum)</th>
+                                        <th>Kum (maximum)</th>
+                                        <th>Rei zawng</th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($areas as $area)
+                                    @foreach ($departments as $department)
                                     <tr>
-                                        <td>{{$area->name}}</td>
-                                        <td>{{$area->bialtu->name}}</td>
+                                        <td>{{$department->name}}</td>
+                                        <td>{{$department->minimum_age}}</td>
+                                        <td>{{$department->maximum_age}}</td>
+                                        <td>{{$department->duration}}</td>
                                         <td>
-                                        <form onsubmit="return confirm('Are you sure?')" action="/admin/areas/{{$area->id}}" class="d-inline" method="post">
+                                        <form onsubmit="return confirm('Are you sure?')" action="/admin/departments/{{$department->id}}" class="d-inline" method="post">
                                                 @method('delete')
                                                 @csrf
                                             <input class="btn btn-danger btn-small" type="submit" value="Delete">
                                         </form>
-                                            <a href="/admin/areas/{{$area->id}}/edit" class="btn btn-secondary btn-small">Edit</a>
+                                            <a href="/admin/departments/{{$department->id}}/edit" class="btn btn-secondary btn-small">Edit</a>
                                             <a href="/" class="btn btn-primary btn-small">View Members</a>
                                         </td>
                                     </tr>
