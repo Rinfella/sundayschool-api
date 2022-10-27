@@ -1,7 +1,7 @@
 <x-admin-layout>
     <script>
         const calculate = function () {
-            $('maximum_age').val(parseInt($('minimum_age').val()) + parseInt($('duration').val()) - 1)
+            $('#maximum_age').val(parseInt($('#minimum_age').val()) + parseInt($('#duration').val()) - 1)
         }
     </script>
     <section class="content-header">
@@ -32,6 +32,7 @@
                     type="text" autofocus
                     class="form-control @error('name') is-invalid @enderror"
                     name="name"
+                    id="name"
                     placeholder="Enter department name"
                     value="{{old('name')}}">
 
@@ -42,9 +43,10 @@
                 <div class="form-group">
                   <label for="minimum_age">Kum (minimum):</label>
                   <input
-                    type="text"
+                    type="number"
                     class="form-control @error('minimum_age') is-invalid @enderror"
                     name="minimum_age"
+                    id="minimum_age"
                     placeholder="Enter minimum age"
                     value="{{old('minimum_age')}}">
 
@@ -55,10 +57,11 @@
                 <div class="form-group">
                   <label for="duration">Duration:</label>
                   <input
-                    type="text"
+                    type="number"
                     class="form-control @error('duration') is-invalid @enderror"
                     onkeyup="calculate()"
                     name="duration"
+                    id="duration"
                     placeholder="Enter minimum age"
                     value="{{old('duration',3)}}">
 
@@ -69,9 +72,10 @@
                 <div class="form-group">
                   <label for="maximum_age">Kum (minimum):</label>
                   <input
-                    type="text" readonly
+                    type="number" readonly
                     class="form-control @error('maximum_age') is-invalid @enderror"
                     name="maximum_age"
+                    id="maximum_age"
                     placeholder="Enter minimum age"
                     value="{{old('maximum_age')}}">
 

@@ -1,9 +1,4 @@
 <x-admin-layout>
-    <script>
-        const calculate = function () {
-            $('maximum_age').val(parseInt($('minimum_age').val()) + parseInt($('duration').val()) - 1)
-        }
-    </script>
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
@@ -21,11 +16,11 @@
         </div>
     </section>
     <section class="content">
-        <form action="/admin/departments" method="post">
+        <form action="/admin/groups" method="post">
             @csrf
             <div class="card-body">
                 <div class="form-group">
-                    <label for="department_id" class="form-label"> Department:</label>
+                    <label for="department_id" class="form-label"> Group:</label>
                     <select name="department_id"
                         id="department_id"
                         class="form-control col-3 @error('department_id') is-invalid @enderror"
