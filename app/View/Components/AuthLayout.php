@@ -4,7 +4,7 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class authLayout extends Component
+class AuthLayout extends Component
 {
     /**
      * Create a new component instance.

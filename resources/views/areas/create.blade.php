@@ -20,11 +20,12 @@
             @csrf
             <div class="card-body">
                 <div class="form-group">
-                  <label for="name">Name</label>
-                  <input
+                    <label for="name">Name</label>
+                    <input
                     type="text"
                     class="form-control @error('name') is-invalid @enderror"
                     name="name"
+                    autofocus
                     placeholder="Enter name"
                     value=""{{old('name')}}>
 
@@ -33,27 +34,27 @@
                     </div>
                 </div>
                 <div class="form-group">
-                  <label for="person_in_charge">Person In Charge</label>
-                  <select
-                    name="person_in_charge"
-                    class="form-control-sm @error('person_in_charge') is-invalid @enderror"
-                    name="person_in_charge"
-                    value="{{old('person_in_charge')}}">
+                    <label for="person_in_charge">Person In Charge</label>
+                    <select
+                        name="person_in_charge"
+                        class="form-control-sm @error('person_in_charge') is-invalid @enderror"
+                        name="person_in_charge"
+                        value="{{old('person_in_charge')}}">
 
                     <option value="">--Select one--</option>
                         @foreach ($elders as $elder)
                             <option value="{{$elder->id}}">{{$elder->name}} {{$elder->email}}</option>
                         @endforeach
-                  </select>
-                  <!-- {{-- <input type="text" class="form-control" name="person_in_charge" placeholder="Enter number"> --}} -->
-                  <div class="invalid-feedback">
-                        {{$errors->first('person_in_charge')}}
-                  </div>
+                    </select>
+
+                    <div class="invalid-feedback">
+                            {{$errors->first('person_in_charge')}}
+                    </div>
                 </div>
-              </div>
-              <div class="card-footer">
-                <button type="submit" value="submit" class="btn btn-primary">Submit</button>
-              </div>
+            </div>
+            <div class="card-footer">
+            <button type="submit" value="submit" class="btn btn-primary">Submit</button>
+            </div>
         </form>
     </section>
 </x-admin-layout>

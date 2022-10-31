@@ -25,6 +25,7 @@
                         type="text"
                         class="form-control @error('year') is-invalid @enderror"
                         name="year"
+                        autofocus
                         placeholder="Enter year"
                         value="{{old('year')}}">
                     <div class="invalid-feedback">

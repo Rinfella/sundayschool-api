@@ -25,8 +25,8 @@ class StoreDepartmentRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'minimum_age' => 'required|numeric',
-            'maximum_age' => 'required|numeric',
+            'maximum_age' => 'required',
+            'minimum_age' => 'required',
             'duration' => 'required|numeric',
         ];
     }

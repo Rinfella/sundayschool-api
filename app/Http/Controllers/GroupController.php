@@ -6,6 +6,7 @@ use App\Http\Requests\StoreGroupRequest;
 use App\Http\Requests\UpdateGroupRequest;
 use App\Models\Department;
 use App\Models\Group;
+use PHPUnit\TextUI\XmlConfiguration\Groups;
 
 class GroupController extends Controller
 {
@@ -17,6 +18,7 @@ class GroupController extends Controller
     public function index()
     {
         $groups = Group::with('department')->paginate();
+
         return view('groups.index', [
             'groups' => $groups
         ]);
@@ -53,11 +55,24 @@ class GroupController extends Controller
 
         for($i = $existingGroupsInDepartment; $i < $existingGroupsInDepartment + $numberOfGroups; $i++) {
             Group::create([
-                'name' => $department->name . ' ' . ($i+1),
+                'name' => $department->name . ' ' . ($i + 1),
                 'department_id' => $department->id,
                 'is_teacher_group' => false,
             ]);
         }
+
+        $teacherGroupExists = Group::where('department_id', $department->id)
+            ->where('name', '=', $department->name . ' Zirtirtu')
+            ->count();
+
+        if (!$teacherGroupExists) {
+            Group::create([
+                'name' => $department->name . ' Zirtirtu' ,
+                'department_id' => $department->id,
+                'is_teacher_group' => true,
+            ]);
+        }
+
         return redirect('/admin/groups/create')->with('messageSuccess', 'Groups created successfully');
     }
 
@@ -69,7 +84,7 @@ class GroupController extends Controller
      */
     public function show(Group $group)
     {
-        return $group;
+        //
     }
 
     /**
@@ -80,7 +95,7 @@ class GroupController extends Controller
      */
     public function edit(Group $group)
     {
-
+        //
     }
 
     /**

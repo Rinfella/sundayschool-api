@@ -15,7 +15,7 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        return view('departments.index',[
+        return view('departments.index', [
             'departments' => Department::get(),
         ]);
     }
@@ -39,6 +39,7 @@ class DepartmentController extends Controller
     public function store(StoreDepartmentRequest $request)
     {
         Department::create($request->all());
+
         return redirect('/admin/departments/create')->with('messageSuccess', 'Department created successfully');
     }
 

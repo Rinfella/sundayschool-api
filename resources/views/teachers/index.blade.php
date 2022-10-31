@@ -3,12 +3,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Groups/Pawl</h1>
+                    <h1>Zirtirtu te</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Groups</li>
+                        <li class="breadcrumb-item"><a href="/admin/">Home</a></li>
+                        <li class="breadcrumb-item active">Teachers</li>
                     </ol>
                 </div>
             </div>
@@ -21,7 +21,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Sunday school pawl hrang hrang te </h3>
+                            <h3 class="card-title">Sunday Zirtirtu te </h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -29,35 +29,33 @@
                                 <table class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
-                                            <th>Hming</th>
-                                            <th>Department</th>
                                             <th>Zirtirtu</th>
+                                            <th>Session</th>
+                                            <th>Department</th>
+                                            <th>Pawl</th>
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($groups as $group)
+                                        @foreach ($teachers as $teacher)
                                         <tr>
-                                            <td>{{$group->name}}</td>
-                                            <td>{{$group->department->name}}</td>
-                                            <td>{{$group->is_teacher_group}}</td>
+                                            <td>{{$teacher->user->name}}</td>
+                                            <td>{{$teacher->session->year}}</td>
+                                            <td>{{$teacher->appointment->department->name}}</td>
+                                            <td>{{$teacher->appointment->group->name}}</td>
                                             <td>
-                                                <form onsubmit="return confirm('Are you sure')" action="/admin/groups/{{$group->id}}" class="d-inline" method="post">
+                                                <form onsubmit="return confirm('Are you sure')" action="/admin/teachers/{{$teacher->id}}" class="d-inline" method="post">
                                                     @method('delete')
                                                     @csrf
                                                     <input class="btn btn-danger btn-small" type="submit" value="Delete">
                                                 </form>
-                                                <a class="btn btn-info btn-small" href="/admin/groups/{{$group->id}}/edit">Edit</a> 
-                                                <a class="btn btn-info btn-small" href="#">
-                                                    <i class="fa fa-users"></i>
-                                                    View Members
-                                                </a>
+                                                <a class="btn btn-info btn-small" href="/admin/teachers/{{$teacher->id}}/edit">Edit</a>
                                             </td>
                                         </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
-                                {{$groups->links()}}
+                                {{$teachers->links()}}
                             </div>
                         </div>
                     </div>

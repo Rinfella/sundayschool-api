@@ -25,6 +25,7 @@ class AreaController extends Controller
         $viewData = [
             'areas' => $areas
         ];
+        // dd($areas->toArray());
 
         return view('areas.index', $viewData);
     }
@@ -108,7 +109,7 @@ class AreaController extends Controller
         $area->person_in_charge = $request->input('person_in_charge');
         $area->save();
 
-        return redirect('/admin/areas/')->with('messageSuccess', $area->name . '  Updated Successfully');
+        return redirect('/admin/areas/')->with('messageSuccess', $area->name . 'Updated Successfully');
     }
 
     /**
@@ -119,7 +120,12 @@ class AreaController extends Controller
      */
     public function destroy(Area $area)
     {
+        // $area = Area::findOrFail($id);
+
+        // dd($area);
+        // $area->delete();
+
         $area->delete();
-        return redirect('/admin/areas')->with('messageSuccess', $area->name. '  Deleted Successfully');
+        return redirect('/admin/areas')->with('messageSuccess', $area->name. 'Deleted Successfully');
     }
 }

@@ -28,8 +28,8 @@ class RegisterRequest extends FormRequest
             'fathers_name' => '',
             'email' => 'required|email|unique:users,email',
             'phone_number' => 'nullable|digits:10',
-            'password' =>  'required|min:6|confirmed',
-            'terms' => 'accepted'
+            'password' => 'required|min:6|confirmed',
+            'terms' => 'accepted',
         ];
     }
 }

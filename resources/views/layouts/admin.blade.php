@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Dashboard 2</title>
+    <title>AdminLTE</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -22,7 +22,7 @@
 
         <!-- Preloader -->
         <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="/animation__wobble" src="/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60"
+            <img class="animation__wobble" src="/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60"
                 width="60">
         </div>
 
@@ -194,7 +194,9 @@
                    {{ session ('messageError') }}
                 </div>
             @endif
-        {{ $slot }}
+
+            {{ $slot }}
+
         </div>
 
 
@@ -220,22 +222,25 @@
     <script src="/plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap -->
     <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- overlayScrollbars -->
-    <script src="/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-    <!-- AdminLTE App -->
     <script src="/dist/js/adminlte.js"></script>
+
+    @yield('bottomResources')
+
+    <!-- overlayScrollbars -->
+    <!-- <script src="/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script> -->
+    <!-- AdminLTE App -->
 
     <!-- PAGE PLUGINS -->
     <!-- jQuery Mapael -->
-    <script src="/plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
+    <!-- <script src="/plugins/jquery-mousewheel/jquery.mousewheel.js"></script> -->
     <script src="/plugins/raphael/raphael.min.js"></script>
     <script src="/plugins/jquery-mapael/jquery.mapael.min.js"></script>
     <script src="/plugins/jquery-mapael/maps/usa_states.min.js"></script>
     <!-- ChartJS -->
-    <script src="/plugins/chart.js/Chart.min.js"></script>
+    <!-- <script src="/plugins/chart.js/Chart.min.js"></script> -->
 
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="/dist/js/pages/dashboard2.js"></script>
+    <!-- <script src="/dist/js/pages/dashboard2.js"></script> -->
 </body>
 
 </html>

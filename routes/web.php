@@ -5,6 +5,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\TeacherController;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,7 +31,7 @@ Route::group([
     Route::get('register', [AuthController::class, 'showRegistrationForm']);
     Route::post('register', [AuthController::class, 'register']);
 
-    Route::get('login', [AuthController::class, 'showLogin'])->name('login');
+    Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
     Route::post('login', [AuthController::class, 'login']);
 
     Route::get('forgot-password', [AuthController::class, 'showForgotPassword']);
@@ -57,9 +59,22 @@ Route::group([
     Route::get('/', function() {
         return view('dashboard.index');
     });
+    Route::get('users/search', function () {
+        $term = request()->input('term');
+
+        return
+        ['results' => User::where('name', 'like', '%' . $term . '%')
+            ->select([
+                'id',
+                'name as text'
+            ])
+            ->get()];
+    });
+
     Route::resource('areas', AreaController::class);
     Route::resource('sessions', SessionController::class);
     Route::resource('departments', DepartmentController::class);
     Route::resource('groups', GroupController::class);
+    Route::resource('teachers', TeacherController::class);
 });
 

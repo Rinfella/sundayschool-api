@@ -24,8 +24,8 @@ class StoreGroupRequest extends FormRequest
     public function rules()
     {
         return [
-            'number_of_groups' => 'required|numeric|min:1',
-            'department_id' => 'requires|exists:departments,id',
+            'number_of_groups'=>'required|numeric|min:1',
+            'department_id'=>'required|exists:departments,id',
         ];
     }
 }

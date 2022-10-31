@@ -5,18 +5,30 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Group extends Model
+class TeacherAppointment extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name',
+        'teacher_id',
         'department_id',
-        'is_teacher_group',
+        'group_id',
+        'start_month',
+        'active',
     ];
+
+    public function teacher()
+    {
+        return $this->belongsTo(Teacher::class);
+    }
 
     public function department()
     {
         return $this->belongsTo(Department::class);
+    }
+
+    public function group()
+    {
+        return $this->belongsTo(Group::class);
     }
 }

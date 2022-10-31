@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreSessionRequest;
 use App\Http\Requests\UpdateSessionRequest;
 use App\Models\Session;
+use App\Models\User;
 
 class SessionController extends Controller
 {
@@ -19,6 +20,7 @@ class SessionController extends Controller
         $viewData = [
             'sessions' => $sessions
         ];
+        // dd($areas->toArray());
         return view('sessions.index', $viewData);
     }
 
@@ -29,7 +31,7 @@ class SessionController extends Controller
      */
     public function create()
     {
-        return view('sessions.create');
+        return view ('sessions.create');
     }
 
     /**
@@ -44,7 +46,7 @@ class SessionController extends Controller
             Session::create($request->all());
             return redirect('/admin/sessions')->with('messageSuccess', 'Created Successfully');
         } catch (\Throwable $th) {
-            return redirect('/admin/sessions/create')->with('messageError', 'Something went wrong!');
+            return redirect('/sessions/create')->with('messageError', 'Something went wrong!');
         }
     }
 
@@ -56,7 +58,7 @@ class SessionController extends Controller
      */
     public function show(Session $session)
     {
-        return $session;
+        //
     }
 
     /**
@@ -68,7 +70,7 @@ class SessionController extends Controller
     public function edit(Session $session)
     {
         return view('sessions.edit', [
-            'session' => $session
+            'session' => $session,
         ]);
     }
 
@@ -81,8 +83,15 @@ class SessionController extends Controller
      */
     public function update(UpdateSessionRequest $request, Session $session)
     {
-        $session->update($request->except(['_token', '_method']));
-        return redirect('/admin/sessions')->with('messageSuccess', $session->name . ' Updated successfully');
+        $session->year = $request->input('year');
+        $session->end_month = $request->input('end_month');
+        $session->start_month = $request->input('start_month');
+        $session->honor_cutoff = $request->input('honor_cutoff');
+        $session->exam_full_mark = $request->input('exam_full_mark');
+        $session->total_number_of_sunday_schools = $request->input('total_number_of_sunday_schools');
+        $session->save();
+
+        return redirect('/admin/sessions/')->with('messageSuccess', $session->name . 'Updated Successfully');
     }
 
     /**
@@ -94,6 +103,6 @@ class SessionController extends Controller
     public function destroy(Session $session)
     {
         $session->delete();
-        return redirect('/admin/sessions')->with('messageSuccess', $session->name . ' Deleted successfully');
+        return redirect('/admin/sessions')->with('messageSuccess', $session->name. 'Deleted Successfully');
     }
 }

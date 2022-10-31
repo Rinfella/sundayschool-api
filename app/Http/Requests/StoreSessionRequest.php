@@ -27,7 +27,7 @@ class StoreSessionRequest extends FormRequest
             'year' => 'required|digits:4',
             'start_month' => 'nullable|numeric',
             'end_month' => 'nullable|numeric',
-            'honour_cutoff' => 'nullable|numeric',
+            'honor_cutoff' => 'nullable|numeric',
             'exam_full_mark' => 'nullable|numeric',
             'total_number_of_sunday_schools' => 'nullable|numeric',
         ];
