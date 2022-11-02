@@ -14,6 +14,7 @@ use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
 use stdClass;
 
 class TeacherController extends Controller
@@ -25,16 +26,15 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        $viewdata = Teacher::with([
+        $viewData = Teacher::with([
             'user',
             'session',
-            'appointment_group',
-            'appointment_department',
+            'appointment.group',
+            'appointment.department',
         ])->paginate();
 
-
         return view('teachers.index', [
-            'teachers' => $viewdata
+            'teachers' => $viewData
         ]);
     }
 
@@ -87,7 +87,6 @@ class TeacherController extends Controller
 
         if($currentStep == 1) {
             $this->validate($request, [
-                'session_id' => 'required',
                 'start_month' => 'required',
                 'department_id' => 'required',
             ]);
@@ -98,7 +97,6 @@ class TeacherController extends Controller
 
         if($currentStep == 2) {
             $this->validate($request, [
-                'session_id' => 'required',
                 'start_month' => 'required',
                 'department_id' => 'required',
                 'group_id' => 'required',
@@ -110,14 +108,23 @@ class TeacherController extends Controller
 
         if($currentStep == 3) {
             $this->validate($request, [
-                'session_id' => 'required',
                 'start_month' => 'required',
                 'department_id' => 'required',
                 'group_id' => 'required',
                 'user_id' => 'required',
             ]);
 
-            $teacher = Teacher::create($request->all());
+            $existing = Teacher::where('user_id', $request->input('user_id'))
+                ->where('session_id', $request->input('session_id'))
+                ->count();
+            
+            if ($existing != 0) {
+                throw ValidationException::withMessages(['user_id' => ['unique' => 'This user is already assigned as a teacher']]);
+            }
+
+            $data = $request->all();
+            $data['session_id'] = session('currentAcademicSession');
+            $teacher = Teacher::create($data);
 
             $teacherAppointmentData = $request->all();
             $teacherAppointmentData['teacher_id'] = $teacher->id;
@@ -125,6 +132,7 @@ class TeacherController extends Controller
             TeacherAppointment::create($teacherAppointmentData);
 
             $data = $request->except('_token', 'currentStep', 'group_id', 'user_id');
+            $data['currentStep'] = 2;
             return redirect()->route('teachers.create', $data)->with('messageSuccess', 'Teacher created successfully');
         }
     }

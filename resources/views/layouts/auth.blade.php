@@ -1,3 +1,4 @@
+login
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,6 +20,7 @@
   <div class="login-logo">
     <a href="#"><b>Admin</b>LTE</a>
   </div>
+  <!-- /.login-logo -->
     @if (session('messageSuccess'))
         <div class="alert alert-success">
             {{ session('messageSuccess') }}
@@ -26,19 +28,20 @@
     @endif
     @if (session('messageError'))
         <div class="alert alert-danger">
-            {{ session ('messageError') }}
+           {{ session ('messageError') }}
         </div>
     @endif
-  <!-- /.login-logo -->
+    <!-- /.login-card-body -->
     {{$slot}}
+  </div>
 </div>
 <!-- /.login-box -->
 
 <!-- jQuery -->
-<script src="/plugins/jquery/jquery.min.js"></script>
+<script src="../../plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
-<script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
-<script src="/dist/js/adminlte.min.js"></script>
+<script src="../../dist/js/adminlte.min.js"></script>
 </body>
 </html>

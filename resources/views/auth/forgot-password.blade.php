@@ -1,3 +1,4 @@
+
 <x-auth-layout>
 <div class="card">
     <div class="card-body login-card-body">
@@ -6,14 +7,11 @@
       <form action="/auth/forgot-password" method="post">
         @csrf
         <div class="input-group mb-3">
-          <input name="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email">
+          <input name="email" type="email" class="form-control" placeholder="Email">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
             </div>
-          </div>
-          <div class="invalid-feedback">
-            {{$errors->first('email')}}
           </div>
         </div>
         <div class="row">
@@ -33,4 +31,5 @@
     </div>
     <!-- /.login-card-body -->
   </div>
+</div>
 </x-auth-layout>

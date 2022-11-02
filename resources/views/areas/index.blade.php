@@ -22,7 +22,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Kohhran chhung a bial hrang hrangte <a href="/admin/areas/create">Create New</a>:-</h3>
+                            <h3 class="card-title">Kohhran chhung a bial hrang hrangte <a href="/areas/create">Create New</a>:-</h3>
                         </div>
 
                         <!-- /.card-header -->
@@ -46,8 +46,8 @@
                                                 @csrf
                                             <input class="btn btn-danger btn-small" type="submit" value="Delete">
                                         </form>
-                                            <a href="/admin/areas/{{$area->id}}/edit" class="btn btn-secondary btn-small">Edit</a>
-                                            <a href="/" class="btn btn-primary btn-small">View Members</a>
+                                            <a href="/admin/areas/{{$area->id}}/edit">edit</a>
+                                            view members
                                         </td>
                                     </tr>
                                     @endforeach

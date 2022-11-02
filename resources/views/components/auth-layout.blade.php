@@ -1,3 +1,3 @@
 <div>
-    <!-- Very little is needed to make a happy life. - Marcus Aurelius -->
+    <!-- People find pleasure in different ways. I find it in keeping my mind clear. - Marcus Aurelius -->
 </div>

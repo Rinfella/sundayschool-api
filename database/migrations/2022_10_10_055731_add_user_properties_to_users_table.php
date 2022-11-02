@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -24,6 +25,7 @@ return new class extends Migration
             $table->foreignId('family_head_id')->nullable();
             $table->boolean('is_family_head')->default(false);
 
+            DB::statement("ALTER TABLE `users` MODIFY COLUMN  `email`  VARCHAR(255) NULL");
         });
     }
 
@@ -35,7 +37,14 @@ return new class extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            //
+            $table->dropColumn('fathers_name');
+            $table->dropColumn('mothers_name');
+            $table->dropColumn('gender');
+            $table->dropColumn('date_of_birth');
+            $table->dropColumn('address');
+            $table->dropColumn('phone_number');
+            $table->dropColumn('area_id');
+            $table->dropColumn('family_head_id');
         });
     }
 };

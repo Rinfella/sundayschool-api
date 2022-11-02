@@ -1,4 +1,4 @@
-<x-main-layout>
+<x-admin-layout>
 
     <!-- Content Header (Page header) -->
     <div class="content-header">
@@ -853,4 +853,4 @@
       </div><!--/. container-fluid -->
     </section>
     <!-- /.content -->
-</x-main-layout>
+</x-admin-layout>

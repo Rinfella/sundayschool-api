@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('sessions', function (Blueprint $table) {
             $table->id();
-            $table->unsignedsmallInteger('year');
+            $table->unsignedSmallInteger('year');
             $table->unsignedTinyInteger('start_month')->default(1);
             $table->unsignedTinyInteger('end_month')->default(12);
             $table->unsignedSmallInteger('honour_cutoff')->default(90);

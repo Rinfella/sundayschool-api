@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-// use Illuminate\Http\Request;
 use App\Http\Requests\StoreAreaRequest;
 use App\Http\Requests\UpdateAreaRequest;
 use App\Models\Area;
@@ -21,12 +20,10 @@ class AreaController extends Controller
             'bialtu' => function($q) {
                 $q->select('id', 'name');
             }
-        ])->get();
+            ])->get();
         $viewData = [
             'areas' => $areas
         ];
-        // dd($areas->toArray());
-
         return view('areas.index', $viewData);
     }
 
@@ -60,7 +57,7 @@ class AreaController extends Controller
             Area::create($request->all());
             return redirect('/admin/areas')->with('messageSuccess', 'Created Successfully');
         } catch (\Throwable $th) {
-            return redirect('/areas/create')->with('messageError', 'Something went wrong!');
+            return redirect('/admin/areas/create')->with('messageError', 'Something went wrong');
         }
     }
 
@@ -69,11 +66,11 @@ class AreaController extends Controller
      *
      * @param  \App\Models\Area  $area
      * @return \Illuminate\Http\Response
+     * @todo Users/members area chhunga en tur an awm huna khawih tur
      */
     public function show(Area $area)
     {
-        // $area = Area::findOrFail($id);
-        // return view('areas.show', ['area' => $area]);
+        // return $area;
     }
 
     /**
@@ -109,7 +106,7 @@ class AreaController extends Controller
         $area->person_in_charge = $request->input('person_in_charge');
         $area->save();
 
-        return redirect('/admin/areas/')->with('messageSuccess', $area->name . 'Updated Successfully');
+        return redirect('/areas/')->with('messageSuccess', $area->name . ' Updated Successfully');
     }
 
     /**
@@ -120,12 +117,8 @@ class AreaController extends Controller
      */
     public function destroy(Area $area)
     {
-        // $area = Area::findOrFail($id);
-
-        // dd($area);
-        // $area->delete();
-
         $area->delete();
-        return redirect('/admin/areas')->with('messageSuccess', $area->name. 'Deleted Successfully');
+
+        return redirect('/areas')->with('messageSuccess', $area->name . ' Deleted Successfully');
     }
 }

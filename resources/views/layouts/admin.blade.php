@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE</title>
+    <title>AdminLTE 3 | Dashboard 2</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -22,7 +22,7 @@
 
         <!-- Preloader -->
         <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__wobble" src="/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60"
+            <img class="/animation__wobble" src="/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60"
                 width="60">
         </div>
 
@@ -44,6 +44,20 @@
 
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
+                <!-- Navbar Search -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link" data-toggle="dropdown" href="#">
+                        Current Session : {{ $currentAcademicSession->year }}
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-lg dropdow\n-menu-right">
+                        @foreach ($academicSessions as $item)
+                            <a href="?currentAcademicSession={{ $item->id }}" class="dropdown-item">
+                                {{ $item->year }}
+                            </a>
+                        @endforeach
+                    </div>
+                </li>
+
                 <!-- Navbar Search -->
                 <li class="nav-item">
                     <a class="nav-link" data-widget="navbar-search" href="#" role="button">
@@ -172,8 +186,8 @@
                         @csrf
                     </form>
                     <a class="nav-link"
-                        onclick="confirm('Are you sure to log out?') ? document.getElementById('logout-form').submit() : null">
-                        <i class="fas fa-power-off"></i>
+                        onclick="confirm('Are you Sure?') ? document.getElementById('logout-form').submit() : null">
+                        <i class="fa fa-power-off"></i>
                     </a>
                 </li>
             </ul>
@@ -191,12 +205,10 @@
             @endif
             @if (session('messageError'))
                 <div class="alert alert-danger">
-                   {{ session ('messageError') }}
+                    {{ session('messageError') }}
                 </div>
             @endif
-
             {{ $slot }}
-
         </div>
 
 
@@ -223,24 +235,22 @@
     <!-- Bootstrap -->
     <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="/dist/js/adminlte.js"></script>
-
     @yield('bottomResources')
-
     <!-- overlayScrollbars -->
-    <!-- <script src="/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script> -->
+    {{-- <script src="/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script> --}}
     <!-- AdminLTE App -->
 
     <!-- PAGE PLUGINS -->
     <!-- jQuery Mapael -->
-    <!-- <script src="/plugins/jquery-mousewheel/jquery.mousewheel.js"></script> -->
+    {{-- <script src="/plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
     <script src="/plugins/raphael/raphael.min.js"></script>
     <script src="/plugins/jquery-mapael/jquery.mapael.min.js"></script>
-    <script src="/plugins/jquery-mapael/maps/usa_states.min.js"></script>
+    <script src="/plugins/jquery-mapael/maps/usa_states.min.js"></script> --}}
     <!-- ChartJS -->
-    <!-- <script src="/plugins/chart.js/Chart.min.js"></script> -->
+    <script src="/plugins/chart.js/Chart.min.js"></script>
 
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <!-- <script src="/dist/js/pages/dashboard2.js"></script> -->
+    {{-- <script src="/dist/js/pages/dashboard2.js"></script> --}}
 </body>
 
 </html>

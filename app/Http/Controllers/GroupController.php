@@ -17,7 +17,10 @@ class GroupController extends Controller
      */
     public function index()
     {
-        $groups = Group::with('department')->paginate();
+        $groups = Group::with([
+            'department',
+            'teacherAppointment.teacher',
+            ])->paginate();
 
         return view('groups.index', [
             'groups' => $groups

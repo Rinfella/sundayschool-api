@@ -14,22 +14,22 @@ class Teacher extends Model
         'user_id',
     ];
 
-    public function session( )
+    public function session()
     {
         return $this->belongsTo(Session::class);
     }
 
-    public function user( )
+    public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    public function appointments( )
+    public function appointments()
     {
         return $this->hasMany(TeacherAppointment::class);
     }
 
-    public function appointment( )
+    public function appointment()
     {
         return $this->hasOne(TeacherAppointment::class)->latest();
     }

@@ -14,6 +14,6 @@ class TeacherAppointmentSeeder extends Seeder
      */
     public function run()
     {
-        
+        //
     }
 }

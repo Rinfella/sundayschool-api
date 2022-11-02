@@ -15,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
+            $table->string('title'); // Name of Church
+            $table->string('key')->unique(); // nameOfChurch
+            $table->text('value'); // Presbyterian Church of India, Khatla Kohhran
+            $table->string('type')->default('text'); // text, textarea, number, radio, checkbox etc
+            $table->text('options')->nullable(); // dark, light, green, white theme
             $table->timestamps();
         });
     }

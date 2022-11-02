@@ -2,7 +2,8 @@
 
 namespace App\View\Components;
 
-
+use App\Models\Session;
+use Illuminate\Support\Facades\Route;
 use Illuminate\View\Component;
 
 class AdminLayout extends Component
@@ -25,7 +26,17 @@ class AdminLayout extends Component
     public function render()
     {
         $title = 'Sunday School Management';
+        $academicSessions = Session::select(['id', 'year'])->get();
+        $currentAcademicSession = $academicSessions->first(function ($item) {
+            return $item->id == session('currentAcademicSession');
+        });
 
-        return view('layouts.admin', ['title' => $title]);
+        // $title = Route::currentRouteName() . ' ' . $title;
+
+        return view('layouts.admin', [
+            'title' => $title,
+            'academicSessions' => $academicSessions,
+            'currentAcademicSession' => $currentAcademicSession,
+        ]);
     }
 }

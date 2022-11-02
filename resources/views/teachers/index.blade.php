@@ -7,7 +7,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="/admin/">Home</a></li>
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
                         <li class="breadcrumb-item active">Teachers</li>
                     </ol>
                 </div>
@@ -29,8 +29,8 @@
                                 <table class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
-                                            <th>Zirtirtu</th>
-                                            <th>Session</th>
+                                            <th>Hming</th>
+                                            <th>Kum</th>
                                             <th>Department</th>
                                             <th>Pawl</th>
                                             <th></th>
@@ -49,7 +49,7 @@
                                                     @csrf
                                                     <input class="btn btn-danger btn-small" type="submit" value="Delete">
                                                 </form>
-                                                <a class="btn btn-info btn-small" href="/admin/teachers/{{$teacher->id}}/edit">Edit</a>
+                                                <a class="btn btn-info btn-small" href="/admin/teachers/{{$teacher->id}}/edit">Edit</a> 
                                             </td>
                                         </tr>
                                         @endforeach

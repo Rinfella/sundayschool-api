@@ -19,4 +19,14 @@ class Group extends Model
     {
         return $this->belongsTo(Department::class);
     }
+
+    public function teacherAppointment()
+    {
+        return $this->hasOne(TeacherAppointment::class)->where('active', true);
+    }
+
+    public function enrollments()
+    {
+        return $this->hasMany(Enrollment::class);
+    }
 }

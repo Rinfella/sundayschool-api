@@ -17,8 +17,7 @@ return new class extends Migration
         Schema::create('areas', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->ForeignIdFor(User::class, 'person_in_charge')->constrained('users');
-
+            $table->foreignIdFor(User::class, 'person_in_charge')->constrained('users');
             $table->timestamps();
         });
     }

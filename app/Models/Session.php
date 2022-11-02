@@ -11,9 +11,8 @@ class Session extends Model
 
     protected $fillable = [
         'year',
-        'end_month',
         'start_month',
-        'honor_cutoff',
+        'honour_cutoff',
         'exam_full_mark',
         'total_number_of_sunday_schools',
     ];

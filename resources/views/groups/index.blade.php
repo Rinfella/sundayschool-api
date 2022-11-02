@@ -31,16 +31,16 @@
                                         <tr>
                                             <th>Hming</th>
                                             <th>Department</th>
-                                            <th>Zirtirtu</th>
+                                            <th>Zirtirtu Pawl</th>
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($groups as $group)
                                         <tr>
-                                            <td>{{$group->name}}</td>
+                                            <td>{{$group->teacherAppointment ? $group->teacherAppointment->teacher->user->name . ' Pawl (' . $group->name . ')' : $group->name}}</td>
                                             <td>{{$group->department->name}}</td>
-                                            <td>{{$group->is_teacher_group}}</td>
+                                            <td class="{{$group->is_teacher_group ? 'text-success' :  'text-danger'}}"">{{$group->is_teacher_group ? '✓' : '✕'}}</td>
                                             <td>
                                                 <form onsubmit="return confirm('Are you sure')" action="/admin/groups/{{$group->id}}" class="d-inline" method="post">
                                                     @method('delete')
@@ -48,9 +48,13 @@
                                                     <input class="btn btn-danger btn-small" type="submit" value="Delete">
                                                 </form>
                                                 <a class="btn btn-info btn-small" href="/admin/groups/{{$group->id}}/edit">Edit</a> 
-                                                <a class="btn btn-info btn-small" href="#">
+                                                <a class="btn btn-info btn-small" href="/admin/groups/{{$group->id}}/enrollments">
                                                     <i class="fa fa-users"></i>
                                                     View Members
+                                                </a>
+                                                <a class="btn btn-info btn-small" title="Zirlai enroll-na" href="/enrollments/create">
+                                                    <i class="fa fa-users"></i>
+                                                    Enroll Members
                                                 </a>
                                             </td>
                                         </tr>
