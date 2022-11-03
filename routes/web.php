@@ -6,6 +6,7 @@ use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Middleware\SetAcademicSession;
 use App\Models\User;
@@ -62,16 +63,16 @@ Route::group([
         });
         Route::get('users/search', function () {
             $term = request()->input('term');
-    
-            return 
+
+            return
             ['results' => User::where('name', 'like', '%' . $term . '%')
                 ->select([
-                    'id', 
+                    'id',
                     'name as text'
                 ])
                 ->get()];
         });
-    
+
         Route::get('enrollment-entry', function () {
             return view('enrollments.entry');
         });
@@ -79,12 +80,15 @@ Route::group([
         Route::get('groups/{group}/enrollments', [EnrollmentController::class, 'showForGroup']);
         Route::get('groups/{group}/enrollments/create', [EnrollmentController::class, 'createForGroup']);
         Route::post('groups/{groupId}/enrollments', [EnrollmentController::class, 'storeForGroup']);
-    
+
         Route::resource('areas', AreaController::class);
         Route::resource('departments', DepartmentController::class);
         Route::resource('groups', GroupController::class);
         Route::resource('teachers', TeacherController::class);
         Route::resource('enrollments', EnrollmentController::class);
+
+        Route::get('settings', [SettingController::class,'index']);
+        Route::post('settings', [SettingController::class, 'store']);
     });
 
 });

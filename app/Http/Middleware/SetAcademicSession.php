@@ -18,20 +18,19 @@ class SetAcademicSession
      */
     public function handle(Request $request, Closure $next)
     {
-        $academicSession = Session::get('currentAcademicSession');
+        $academicSession = session('currentAcademicSession');
         if($request->input('currentAcademicSession')) {
-            Session::put('currentAcademicSession', $request->input('currentAcademicSession'));
-                // $request->offsetUnset('currentAcademicSession');
-                return redirect()->to($request->fullUrlWithoutQuery('currentAcademicSession'));
+            $currentAcademicSession = AcademicSession::find($request->input('currentAcademicSession'));
+            Session::put('currentAcademicSession', $currentAcademicSession);
 
-                return $next($request);
+            return redirect()->to($request->fullUrlWithoutQuery('currentAcademicSession'));
         }
 
         if(!$academicSession) {
             $latestAcademicSession = AcademicSession::latest()->first();
-            $latestAcademicSessionId = $latestAcademicSession ? $latestAcademicSession->id : null;
-
-            $academicSession = $latestAcademicSessionId;
+            if (!$latestAcademicSession) {
+                return redirect('/admin/sessions/create')->with('messageError', 'Please create session');
+            }
             Session::put('currentAcademicSession', $academicSession);
         }
 

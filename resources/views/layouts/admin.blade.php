@@ -1,3 +1,4 @@
+-- Active: 1666344156713@@127.0.0.1@3306@sundayschool
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,7 +36,7 @@
                             class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="/index3.html" class="nav-link">Home</a>
+                    <a href="/admin" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="#" class="nav-link">Contact</a>
@@ -47,7 +48,7 @@
                 <!-- Navbar Search -->
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
-                        Current Session : {{ $currentAcademicSession->year }}
+                        Current Session : {{ $currentAcademicSession ? $currentAcademicSession->year : 'create session' }}
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdow\n-menu-right">
                         @foreach ($academicSessions as $item)

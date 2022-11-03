@@ -117,13 +117,13 @@ class TeacherController extends Controller
             $existing = Teacher::where('user_id', $request->input('user_id'))
                 ->where('session_id', $request->input('session_id'))
                 ->count();
-            
+
             if ($existing != 0) {
                 throw ValidationException::withMessages(['user_id' => ['unique' => 'This user is already assigned as a teacher']]);
             }
 
             $data = $request->all();
-            $data['session_id'] = session('currentAcademicSession');
+            $data['session_id'] = session('currentAcademicSession')->id;
             $teacher = Teacher::create($data);
 
             $teacherAppointmentData = $request->all();

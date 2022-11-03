@@ -24,7 +24,7 @@
         <div class="card-body">
             <form action="/admin/teachers" method="post" id="createTeacherForm">
                 @csrf
-                <div class="form-group row ">
+                <!-- <div class="form-group row ">
                     <label class="form-label col-3 text-right" for="session_id">Session </label>
                     <select class="form-control col-3 @error('session_id') is-invalid @enderror" type="text"
                         name="session_id" id="session_id">
@@ -36,7 +36,7 @@
                         @endforeach
                     </select>
                     <div class="invalid-feedback offset-3">{{ $errors->first('session_id') }}</div>
-                </div>
+                </div> -->
 
                 <div class="form-group row ">
                     <label class="form-label col-3 text-right" for="start_month">Start Month</label>

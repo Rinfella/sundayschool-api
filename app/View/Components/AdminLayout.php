@@ -27,11 +27,8 @@ class AdminLayout extends Component
     {
         $title = 'Sunday School Management';
         $academicSessions = Session::select(['id', 'year'])->get();
-        $currentAcademicSession = $academicSessions->first(function ($item) {
-            return $item->id == session('currentAcademicSession');
-        });
+        $currentAcademicSession = session('currentAcademicSession');
 
-        // $title = Route::currentRouteName() . ' ' . $title;
 
         return view('layouts.admin', [
             'title' => $title,
