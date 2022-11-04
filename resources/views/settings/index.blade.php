@@ -25,50 +25,33 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <form action="/admin/settings/" method="post">
-                                <select name="" multiple id="">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                </select>
-                                @csrf
-                                @foreach ($settings as $index => $setting)
-                                    <div class="form-group row ">
-                                        <label class="form-label col-3 text-right"
-                                            for="{{ $setting->key }}">{{ $setting->key }}</label>
-                                        @if ($setting->key == 'absent_types')
-                                            @foreach(json_decode($setting->value) as $type)
-                                            <input @class([
-                                                'form-control',
-                                                'col-3',
-                                                'is-invalid' => $errors->has($setting->key),
-                                            ]) type="text"
-                                                name="{{ $setting->key }}[]" id="{{ $setting->key }}.{{$type}}"
-                                                value="{{ $type }}">
-                                            @endforeach
-                                            <div class="invalid-feedback offset-3">{{ $errors->first($setting->key) }}
-                                            </div>
-                                        @else
-                                            <input @class([
-                                                'form-control',
-                                                'col-3',
-                                                'is-invalid' => $errors->has($setting->key),
-                                            ]) type="text"
-                                                name="{{ $setting->key }}" id="{{ $setting->key }}"
-                                                value="{{ $setting->value }}">
-
-                                            <div class="invalid-feedback offset-3">{{ $errors->first($setting->key) }}
-                                            </div>
-                                        @endif
-                                    </div>
-                                @endforeach
-                                <div class="row">
-                                    <div class="offset-3">
-
-                                        <input class="btn btn-primary" type="submit" value="submit">
-                                    </div>
-                                </div>
-                            </form>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Title</th>
+                                            <th>Key</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($settings as $setting)
+                                        <tr>
+                                            <td>{{$setting->title}}</td>
+                                            <td>{{$setting->key}}</td>
+                                            <td>
+                                                <form onsubmit="return confirm('Are you sure')" action="/admin/settings/{{$setting->id}}" class="d-inline" method="post">
+                                                    @method('delete')
+                                                    @csrf
+                                                    <input class="btn btn-danger btn-small" type="submit" value="Delete">
+                                                </form>
+                                                <a class="btn btn-info btn-small" href="/admin/settings/{{$setting->id}}/edit">Edit</a>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>

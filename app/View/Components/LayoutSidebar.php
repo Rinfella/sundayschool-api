@@ -123,6 +123,25 @@ class LayoutSidebar extends Component
                         ],
                     ]
                 ],
+
+                [
+                    'title' => 'Settings',
+                    'link' => '#',
+                    'icon' => 'fa-cogs',
+                    'routeNameStart' => 'settings-config.',
+                    'children' => [
+                        [
+                            'title' => 'List',
+                            'link' => '/admin/settings-config',
+                            'icon' => 'fa-list-ul'
+                        ],
+                        [
+                            'title' => 'Create',
+                            'link' => '/admin/settings-config/create',
+                            'icon' => 'fa-plus'
+                        ],
+                    ]
+                ],
             ];
 
             foreach($items as &$item) {

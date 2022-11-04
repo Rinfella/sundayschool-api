@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('title')->nullable();
             $table->string('key')->unique();
-            $table->longText('value');
+            $table->longText('value')->nullable();
             $table->string('type')->default('text')->nullable();
             $table->text('options')->nullable();
             $table->timestamps();

@@ -24,12 +24,10 @@ class StoreSettingRequest extends FormRequest
      */
     public function rules()
     {
-        $settings = Setting::get();
-        $rules = [];
-
-        foreach($settings as $setting) {
-            $rules[$setting->key] = 'required';
-        }
-        return $rules;
+        return [
+            'title' => 'required',
+            'key' => 'required',
+            'type' => 'required',
+        ];
     }
 }

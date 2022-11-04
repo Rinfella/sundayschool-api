@@ -87,8 +87,10 @@ Route::group([
         Route::resource('teachers', TeacherController::class);
         Route::resource('enrollments', EnrollmentController::class);
 
-        Route::get('settings', [SettingController::class,'index']);
-        Route::post('settings', [SettingController::class, 'store']);
+        Route::resource('settings-config', SettingController::class);
+
+        Route::get('settings', [SettingController::class,'showSiteSettingsForm']);
+        Route::post('settings', [SettingController::class, 'submitSiteSettingsForm']);
     });
 
 });

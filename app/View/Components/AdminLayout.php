@@ -29,6 +29,7 @@ class AdminLayout extends Component
         $academicSessions = Session::select(['id', 'year'])->get();
         $currentAcademicSession = session('currentAcademicSession');
 
+        // dd($currentAcademicSession);
 
         return view('layouts.admin', [
             'title' => $title,

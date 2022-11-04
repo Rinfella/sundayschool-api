@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Dashboard 2</title>
+    <title>{{$title}}</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -19,6 +19,9 @@
 </head>
 
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+    {{-- @php
+        dd('hello')
+    @endphp --}}
     <div class="wrapper">
 
         <!-- Preloader -->
@@ -57,6 +60,12 @@
                             </a>
                         @endforeach
                     </div>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/settings" role="button">
+                      <i class="fas fa-cog"></i>
+                    </a>
                 </li>
 
                 <!-- Navbar Search -->
@@ -209,7 +218,9 @@
                     {{ session('messageError') }}
                 </div>
             @endif
+
             {{ $slot }}
+
         </div>
 
 
@@ -236,7 +247,9 @@
     <!-- Bootstrap -->
     <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="/dist/js/adminlte.js"></script>
+
     @yield('bottomResources')
+
     <!-- overlayScrollbars -->
     {{-- <script src="/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script> --}}
     <!-- AdminLTE App -->
@@ -248,7 +261,7 @@
     <script src="/plugins/jquery-mapael/jquery.mapael.min.js"></script>
     <script src="/plugins/jquery-mapael/maps/usa_states.min.js"></script> --}}
     <!-- ChartJS -->
-    <script src="/plugins/chart.js/Chart.min.js"></script>
+    {{-- <script src="/plugins/chart.js/Chart.min.js"></script> --}}
 
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     {{-- <script src="/dist/js/pages/dashboard2.js"></script> --}}

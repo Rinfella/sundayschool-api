@@ -31,8 +31,9 @@ class SetAcademicSession
             if (!$latestAcademicSession) {
                 return redirect('/admin/sessions/create')->with('messageError', 'Please create session');
             }
-            Session::put('currentAcademicSession', $academicSession);
+            Session::put('currentAcademicSession', $latestAcademicSession);
         }
+        // dd(session('currentAcademicSession'));
 
         return $next($request);
     }
