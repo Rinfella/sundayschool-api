@@ -27,43 +27,12 @@
                         <div class="card-body">
                             <form action="/admin/settings" method="post">
                                 @csrf
+                                
                                 @foreach ($settings as $setting)
-                                    @if($setting->type == 'select')
-                                    <div class="form-group row ">
-                                        <label class="form-label col-3 text-right" for="{{$setting->key}}">{{$setting->title}}</label>
-                                        <select
-                                            class="form-control col-3 @error($setting->key) is-invalid @enderror"
-                                            name="{{$setting->key}}"
-                                            id="{{$setting->key}}">
-                                            <option value=""></option>
-                                            @foreach (json_decode($setting->options) as $optionValue => $optionLabel)
-                                            <option value="{{$optionValue}}" {{$setting->value == $optionValue ? 'selected' : ''}}>{{$optionLabel}}</option>
-                                            @endforeach
-                                        </select>
-                                        <div class="invalid-feedback offset-3">{{ $errors->first($setting->key) }}</div>
-                                    </div>
+                                    @if(in_array($setting->type, ['textarea', 'select', 'multiselect', 'teacher', 'radio', 'checkbox']))
+                                        @include('components.form-fields.' . $setting->type, ['setting' => $setting])
                                     @else
-                                        @if ($setting->type == 'textarea')
-                                        <div class="form-group row ">
-                                            <label class="form-label col-3 text-right" for="{{$setting->key}}">{{$setting->title}}</label>
-                                            <textarea
-                                                class="form-control col-3 @error($setting->key) is-invalid @enderror"
-                                                name="{{$setting->key}}"
-                                                id="{{$setting->key}}">{{ old($setting->key, $setting->value) }}</textarea>
-                                            <div class="invalid-feedback offset-3">{{ $errors->first($setting->key) }}</div>
-                                        </div>
-                                        @else
-                                        <div class="form-group row ">
-                                            <label class="form-label col-3 text-right" for="{{$setting->key}}">{{$setting->title}}</label>
-                                            <input
-                                                class="form-control col-3 @error($setting->key) is-invalid @enderror"
-                                                type="{{$setting->type}}"
-                                                name="{{$setting->key}}"
-                                                id="{{$setting->key}}" value="{{ old($setting->key, $setting->value) }}">
-                                            <div class="invalid-feedback offset-3">{{ $errors->first($setting->key) }}</div>
-                                        </div>
-                                        @endif
-
+                                        @include('components.form-fields.generic', ['setting' => $setting])
                                     @endif
                                 @endforeach
 

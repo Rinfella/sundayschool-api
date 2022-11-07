@@ -47,7 +47,7 @@
                     </select>
                     <div class="invalid-feedback offset-3">{{ $errors->first('type') }}</div>
                 </div>
-
+                
                 <div class="form-group row ">
                     <label class="form-label col-3 text-right" for="options">Options</label>
                     <input class="form-control col-3 @error('options') is-invalid @enderror" type="text" name="options"

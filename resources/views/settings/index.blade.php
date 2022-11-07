@@ -45,7 +45,7 @@
                                                     @csrf
                                                     <input class="btn btn-danger btn-small" type="submit" value="Delete">
                                                 </form>
-                                                <a class="btn btn-info btn-small" href="/admin/settings/{{$setting->id}}/edit">Edit</a>
+                                                <a class="btn btn-info btn-small" href="/admin/settings/{{$setting->id}}/edit">Edit</a> 
                                             </td>
                                         </tr>
                                         @endforeach

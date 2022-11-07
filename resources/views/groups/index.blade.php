@@ -52,7 +52,7 @@
                                                     <i class="fa fa-users"></i>
                                                     View Members
                                                 </a>
-                                                <a class="btn btn-info btn-small" title="Zirlai enroll-na" href="/enrollments/create">
+                                                <a class="btn btn-info btn-small" title="Zirlai enroll-na" href="/admin/groups/{{$group->id}}/enrollments/create">
                                                     <i class="fa fa-users"></i>
                                                     Enroll Members
                                                 </a>
