@@ -47,8 +47,9 @@ class LayoutSidebar extends Component
                         'icon' => 'fa-plus',
                     ],
                 ]
-                ],
-                [
+            ],
+
+            [
                     'title' => 'Sessions',
                     'link' => '#',
                     'icon' => 'fa-circle',
@@ -65,7 +66,7 @@ class LayoutSidebar extends Component
                             'icon' => 'fa-plus',
                         ],
                     ]
-                ],
+            ],
 
                 [
                     'title' => 'Departments',
@@ -101,6 +102,25 @@ class LayoutSidebar extends Component
                             'title' => 'Create',
                             'link' => '/admin/groups/create',
                             'icon' => 'fa-plus',
+                        ],
+                    ]
+                ],
+
+                [
+                    'title' => 'Attendance',
+                    'link' => '#',
+                    'icon' => 'fa-circle',
+                    'routeNameStart' => 'attendance.',
+                    'children' => [
+                        [
+                            'title' => 'List',
+                            'link' => '/admin/attendance',
+                            'icon' => 'fa-list-ul'
+                        ],
+                        [
+                            'title' => 'Create',
+                            'link' => '/admin/attendance/create',
+                            'icon' => 'fa-plus'
                         ],
                     ]
                 ],
@@ -142,6 +162,7 @@ class LayoutSidebar extends Component
                         ],
                     ]
                 ],
+
             ];
 
             foreach($items as &$item) {

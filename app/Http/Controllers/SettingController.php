@@ -67,6 +67,7 @@ class SettingController extends Controller
             'select' => 'Select',
             'radio' => 'Radio',
             'checkbox' => 'Checkbox',
+            'teacher' => 'Zirtirtu',
         ];
     }
 }

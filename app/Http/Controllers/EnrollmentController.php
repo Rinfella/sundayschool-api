@@ -100,8 +100,9 @@ class EnrollmentController extends Controller
             if (!$userId) {
                 continue;
             }
+            $session = session('currentAcademicSession');
             Enrollment::create([
-                'session_id' => session('currentAcademicSession'),
+                'session_id' => $session->id,
                 'user_id' => $userId,
                 'group_id' => $groupId,
                 'full_attendance' => true,

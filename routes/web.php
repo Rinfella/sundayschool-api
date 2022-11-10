@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AreaController;
+use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\EnrollmentController;
@@ -91,6 +92,9 @@ Route::group([
 
         Route::get('settings', [SettingController::class,'showSiteSettingsForm']);
         Route::post('settings', [SettingController::class, 'submitSiteSettingsForm']);
+
+        Route::get('attendance', [AttendanceController::class, 'entry'])->name('attendance.entry');
+        Route::post('attendance', [AttendanceController::class, 'submit']);
     });
 
 });
