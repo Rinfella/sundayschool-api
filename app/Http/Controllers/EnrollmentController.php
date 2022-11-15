@@ -91,7 +91,8 @@ class EnrollmentController extends Controller
     {
         $group->load('teacherAppointment');
 
-        return view('enrollments.create-for-group', ['group' => $group]);
+        return view('enrollments.create-f
+        or-group', ['group' => $group]);
     }
 
     public function storeForGroup($groupId, Request $request)
@@ -117,11 +118,13 @@ class EnrollmentController extends Controller
 
     public function showForGroup(Group $group)
     {
+        $session = session('currentAcademicSession');
         $enrollments = Enrollment::with('user')
-            ->where('session_id', session('currentAcademicSession'))
+            ->where('session_id', $session->id)
             ->where('group_id', $group->id)
             ->get();
-
+        // dd(session('currentAcademicSession'));
+        // dd($enrollments);
         return view('enrollments.show-for-group',[
             'group' => $group,
             'enrollments' => $enrollments,

@@ -5,19 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Attendance extends Model
+class MonthlyReport extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'date',
-        'status',
         'enrollment_id',
+        'month',
+        'present',
+        'absent',
+        'total',
     ];
-
-    public function enrollment()
-    {
-        return $this->belongsTo(Enrollment::class);
-    }
-
 }

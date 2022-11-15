@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\GroupController;
+use App\Http\Controllers\MonthlyReportController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\TeacherController;
@@ -93,8 +94,12 @@ Route::group([
         Route::get('settings', [SettingController::class,'showSiteSettingsForm']);
         Route::post('settings', [SettingController::class, 'submitSiteSettingsForm']);
 
-        Route::get('attendance', [AttendanceController::class, 'entry'])->name('attendance.entry');
-        Route::post('attendance', [AttendanceController::class, 'submit']);
+        Route::get('attendance/entry', [AttendanceController::class, 'entry']);
+        Route::post('attendance/entry', [AttendanceController::class, 'submit']);
+        Route::get('attendance/report', [AttendanceController::class, 'viewReport']);
+
+        Route::get('monthly-report/entry', [MonthlyReportController::class, 'entry']);
+        Route::post('monthly-report/entry', [MonthlyReportController::class, 'submit']);
     });
 
 });
